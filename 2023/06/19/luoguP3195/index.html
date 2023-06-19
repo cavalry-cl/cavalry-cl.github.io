@@ -6,7 +6,7 @@
 <meta property="og:description" content="P3195 [HNOI2008]玩具装箱                           Sol：斜率优化模板题       $f_i$:  将前i个玩具装起来的最小代价$pre_i$:  $\sum_{j&#x3D;1}^{i}C_i$ 递推式：$$\begin{aligned}f_i&amp;&#x3D;min(f_j+(x-L)^2)\\&amp;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-19T04:13:57.000Z">
-<meta property="article:modified_time" content="2023-06-19T08:07:31.815Z">
+<meta property="article:modified_time" content="2023-06-19T09:17:19.396Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="acm">
 <meta name="twitter:card" content="summary"><title>luoguP3195 | Hexo</title><link ref="canonical" href="https://cavalry-cl.github.io/2023/06/19/luoguP3195/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.8.0"><link rel="stylesheet" href="css/custom.css"><script>var Stun = window.Stun || {};
@@ -42,7 +42,7 @@ window.CONFIG = CONFIG;</script><!-- hexo injector head_end start -->
         <h4 id="Sol：斜率优化模板题"   >
           <a href="#Sol：斜率优化模板题" class="heading-link"><i class="fas fa-link"></i></a><a href="#Sol：斜率优化模板题" class="headerlink" title="Sol：斜率优化模板题"></a>Sol：斜率优化模板题</h4>
       <p>$f_i$:  将前i个玩具装起来的最小代价<br>$pre_i$:  $\sum_{j&#x3D;1}^{i}C_i$</p>
-<p>递推式：<br>$$<br>\begin{aligned}<br>f_i&amp;&#x3D;min(f_j+(x-L)^2)\\<br>&amp;&#x3D;min(f_j+(i-j-1+pre_i-pre_j-L)^2)\\<br>&amp;&#x3D;min(f_j+[(i+pre_i)-(pre_j+j+L+1)]^2)\\<br>x_i&amp;&#x3D;i+pre_i,x_j&#x3D;pre_j+j+1+L\\<br>f_i&amp;&#x3D;min(f_j+(x_i-x_j)^2)\\<br>&amp;&#x3D;min(x_i^2+x_j^2+f_j-2x_ix_j)\\<br>b_i&amp;&#x3D;x_i^2,b_j&#x3D;x_j^2+f_j,k&#x3D;-2x_j\\<br>f_i&amp;&#x3D;min(kx_i+b_j+b_i)<br>\end{aligned}<br>$$<br>上式被化简为直线形式，且$x_i$单调递增，$k$单调递减，且要去最小值</p>
+<p>递推式：<br>$$<br>\begin{aligned}<br>f_i&amp;&#x3D;min(f_j+(x-L)^2)\\<br>&amp;&#x3D;min(f_j+(i-j-1+pre_i-pre_j-L)^2)\\<br>&amp;&#x3D;min(f_j+[(i+pre_i)-(pre_j+j+L+1)]^2)\\<br>x_i&amp;&#x3D;i+pre_i,x_j&#x3D;pre_j+j+1+L\\<br>f_i&amp;&#x3D;min(f_j+(x_i-x_j)^2)\\<br>&amp;&#x3D;min(x_i^2+x_j^2+f_j-2x_ix_j)\\<br>b_i&amp;&#x3D;x_i^2,b_j&#x3D;x_j^2+f_j,k&#x3D;-2x_j\\<br>f_i&amp;&#x3D;min(kx_i+b_j+b_i)<br>\end{aligned}<br>$$<br>上式被化简为直线形式，且$x_i$单调递增，$k$单调递减，且要取最小值</p>
 <p>则通过单调队列维护一个下凸壳，保证队首的直线能使得当前$x_i$对应的$f_i$最小</p>
 
         <h4 id="Code"   >
