@@ -37,7 +37,7 @@ window.CONFIG = CONFIG;</script><!-- hexo injector head_end start -->
         <h4 id="Sol：斜率优化模板题"   >
           <a href="#Sol：斜率优化模板题" class="heading-link"><i class="fas fa-link"></i></a><a href="#Sol：斜率优化模板题" class="headerlink" title="Sol：斜率优化模板题"></a>Sol：斜率优化模板题</h4>
       <p>$f_i$:  将前i个玩具装起来的最小代价<br>$pre_i$:  $\sum_{j&#x3D;1}^{i}C_i$</p>
-<p>递推式：<br>$$<br>\begin{aligned}<br>f_i&amp;&#x3D;min(f_j+(x-L)^2)\<br>&amp;&#x3D;min(f_j+(i-j-1+pre_i-pre_j-L)^2)\<br>&amp;&#x3D;min(f_j+[(i+pre_i)-(pre_j+j+L+1)]^2)\<br>x_i&amp;&#x3D;i+pre_i,x_j&#x3D;pre_j+j+1+L\<br>f_i&amp;&#x3D;min(f_j+(x_i-x_j)^2)\<br>&amp;&#x3D;min(x_i^2+x_j^2+f_j-2x_ix_j)\<br>b_i&amp;&#x3D;x_i^2,b_j&#x3D;x_j^2+f_j,k&#x3D;-2x_j\<br>f_i&amp;&#x3D;min(kx_i+b_j+b_i)<br>\end{aligned}<br>$$<br>上式被化简为直线形式，且$x_i$单调递增，$k$单调递减，且要去最小值</p>
+<p>递推式：<br>$$<br>\begin{aligned}<br>f_i&amp;&#x3D;min(f_j+(x-L)^2)\\<br>&amp;&#x3D;min(f_j+(i-j-1+pre_i-pre_j-L)^2)\\<br>&amp;&#x3D;min(f_j+[(i+pre_i)-(pre_j+j+L+1)]^2)\\<br>x_i&amp;&#x3D;i+pre_i,x_j&#x3D;pre_j+j+1+L\\<br>f_i&amp;&#x3D;min(f_j+(x_i-x_j)^2)\\<br>&amp;&#x3D;min(x_i^2+x_j^2+f_j-2x_ix_j)\\<br>b_i&amp;&#x3D;x_i^2,b_j&#x3D;x_j^2+f_j,k&#x3D;-2x_j\\<br>f_i&amp;&#x3D;min(kx_i+b_j+b_i)<br>\end{aligned}<br>$$<br>上式被化简为直线形式，且$x_i$单调递增，$k$单调递减，且要去最小值</p>
 <p>则通过单调队列维护一个下凸壳，保证队首的直线能使得当前$x_i$对应的$f_i$最小</p>
 
         <h4 id="Code"   >
